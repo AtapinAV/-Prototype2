@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private CharacterController _controller;
+    public CharacterController Controller { get { return _controller; } }
+    
     private Animator _animator;
-    private CharacterController _characterController;
+    public Animator Animatorr { get { return _animator; } }
+
     private float _smoothVelocity;
     private float _speedForce;
     private float _velocity;
@@ -16,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _characterController = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -43,7 +47,7 @@ public class PlayerController : MonoBehaviour
             Vector3 move = Quaternion.Euler(0f, rotation, 0f) * Vector3.forward;
 
             transform.rotation = Quaternion.Euler(0f, angel, 0f);
-            _characterController.Move(_speedForce * Time.deltaTime * move.normalized);
+            _controller.Move(_speedForce * Time.deltaTime * move.normalized);
         }
 
         if (direction.magnitude >= 0.1f) _animator.SetBool("Walk", true);
@@ -51,17 +55,17 @@ public class PlayerController : MonoBehaviour
     }
     private void Gravity()
     {
-        if (!_characterController.isGrounded) _velocity += _gravityMove * Time.deltaTime;
+        if (!_controller.isGrounded) _velocity += _gravityMove * Time.deltaTime;
 
-        _characterController.Move(new Vector3(0f, _velocity, 0f) * Time.deltaTime);
+        _controller.Move(new Vector3(0f, _velocity, 0f) * Time.deltaTime);
     }
     private void Jump()
     {
-        if (_characterController.isGrounded && Input.GetKeyDown(KeyCode.Space)) _velocity = _jump;
+        if (_controller.isGrounded && Input.GetKeyDown(KeyCode.Space)) _velocity = _jump;
     }
     private void JumpAnim()
     {
-        if (!_characterController.isGrounded) _animator.SetBool("Jump", true);
+        if (!_controller.isGrounded) _animator.SetBool("Jump", true);
         else { _animator.SetBool("Jump", false); }
     }
     private void RunPlayer()
