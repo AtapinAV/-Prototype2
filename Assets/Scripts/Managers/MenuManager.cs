@@ -6,21 +6,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _pause;
 
     private bool _isPaused;
-    private void Start()
+    private void Awake()
     {
-        _isPaused = false;
+        Pause();
     }
     private void Update()
     {
         PlayPause();
-    }
-    public void PlayLevel()
-    {
-        SceneManager.LoadScene("Level1");
-        if (Time.timeScale == 0f)
-        {
-            Time.timeScale = 1f;
-        }
     }
     private void PlayPause()
     {

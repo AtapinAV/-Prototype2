@@ -19,13 +19,13 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
-        _controller = GetComponent<CharacterController>();
+        _speedForce = _walkSpeed;
     }
 
     private void Start()
-    {   
-        _speedForce = _walkSpeed;
+    {
+        _animator = GetComponent<Animator>();
+        _controller = GetComponent<CharacterController>();
     }
     private void Update()
     {

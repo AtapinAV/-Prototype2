@@ -15,12 +15,13 @@ public class Shoting : MonoBehaviour
     private PlayerController _playerController;
     private void Awake()
     {
-        _playerController = GetComponent<PlayerController>();
+        _isRecharged = true;
     }
 
     private void Start()
     {
-        _isRecharged = true;
+        _playerController = GetComponent<PlayerController>();
+        
     }
     private void Update()
     {

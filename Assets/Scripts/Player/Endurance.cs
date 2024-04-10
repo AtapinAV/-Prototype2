@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Endurance : MonoBehaviour
 {
@@ -28,7 +29,6 @@ public class Endurance : MonoBehaviour
     }
     private void DieRestartLevel()
     {
-        _pause.SetActive(true);
-        Time.timeScale = 0f;
+        SceneManager.LoadScene("Level1");
     }
 }
